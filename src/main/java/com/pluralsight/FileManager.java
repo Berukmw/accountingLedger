@@ -34,4 +34,15 @@ public class FileManager {
 
         return transactions;
     }
+
+    public static void saveTransaction(Transaction t) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.csv", true));
+            writer.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
+            writer.newLine();
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error saving transaction: " + e.getMessage());
+        }
+    }
 }
