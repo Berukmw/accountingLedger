@@ -2,7 +2,6 @@ package com.pluralsight;
 
 import java.util.*;
 
-
 public class LedgerScreen {
 
     public static final String BLUE = "\u001B[34m";
@@ -48,31 +47,50 @@ public class LedgerScreen {
         }
     }
 
+    public void printHeader() {
+        System.out.println("-".repeat(105));
+        System.out.printf(BLUE + "%-12s | %-8s | %-40s | %-20s | %14s" + RESET + "%n",
+                "DATE", "TIME", "DESCRIPTION", "PAYEE", "AMOUNT");
+        System.out.println("-".repeat(105));
+    }
+
     public void displayAll() {
         System.out.println("\n" + BLUE + "--- ALL ENTRIES ---" + RESET);
+        printHeader();
+
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                    t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());        }
+                    t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+        }
+        System.out.println("-".repeat(105));
     }
 
     public void displayRevenue() {
         System.out.println("\n" + BLUE + "--- REVENUE ---" + RESET);
+        printHeader();
+
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() > 0) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
+        System.out.println("-".repeat(105));
     }
 
     public void displayExpenses() {
         System.out.println("\n" + BLUE + "--- EXPENSES ---" + RESET);
+        printHeader();
+
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() < 0) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
+        System.out.println("-".repeat(105));
     }
 }

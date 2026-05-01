@@ -50,9 +50,18 @@ public class ReportsScreen {
         }
     }
 
+    public void printHeader() {
+        System.out.println("-".repeat(105));
+        System.out.printf(BLUE + "%-12s | %-8s | %-40s | %-20s | %14s" + RESET + "%n",
+                "DATE", "TIME", "DESCRIPTION", "PAYEE", "AMOUNT");
+        System.out.println("-".repeat(105));
+    }
+
     public void monthToDate() {
         LocalDate now = LocalDate.now();
-        System.out.println("\n" + BLUE + "--- MONTH TO DATE ---" + RESET);
+        System.out.println("\n" + BLUE + "--- MONTH TO DATE: " + now.getMonth() + " " + now.getYear() + " ---" + RESET);
+        System.out.println("(amounts shown as monthly cost)");
+        printHeader();
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -60,13 +69,17 @@ public class ReportsScreen {
 
             if (date.getMonth() == now.getMonth() && date.getYear() == now.getYear()) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount() / 12);            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount() / 12);
+            }
         }
+        System.out.println("-".repeat(105));
     }
 
     public void previousMonth() {
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        System.out.println("\n" + BLUE + "--- PREVIOUS MONTH ---" + RESET);
+        System.out.println("\n" + BLUE + "--- PREVIOUS MONTH: " + lastMonth.getMonth() + " " + lastMonth.getYear() + " ---" + RESET);
+        System.out.println("(amounts shown as monthly cost)");
+        printHeader();
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -74,47 +87,58 @@ public class ReportsScreen {
 
             if (date.getMonth() == lastMonth.getMonth() && date.getYear() == lastMonth.getYear()) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount() / 12);            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount() / 12);
+            }
         }
+        System.out.println("-".repeat(105));
     }
 
     public void yearToDate() {
         int currentYear = LocalDate.now().getYear();
-        System.out.println("\n" + BLUE + "--- YEAR TO DATE ---" + RESET);
+        System.out.println("\n" + BLUE + "--- YEAR TO DATE: " + currentYear + " ---" + RESET);
+        printHeader();
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
 
             if (t.getDate().getYear() == currentYear) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
+        System.out.println("-".repeat(105));
     }
 
     public void previousYear() {
         int lastYear = LocalDate.now().getYear() - 1;
-        System.out.println("\n" + BLUE + "--- PREVIOUS YEAR ---" + RESET);
+        System.out.println("\n" + BLUE + "--- PREVIOUS YEAR: " + lastYear + " ---" + RESET);
+        printHeader();
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
 
             if (t.getDate().getYear() == lastYear) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
+        System.out.println("-".repeat(105));
     }
 
     public void searchByPayee() {
         System.out.print("Enter payee name: ");
         String vendor = scanner.nextLine().toLowerCase();
         System.out.println("\n" + BLUE + "--- PAYEE SEARCH: " + vendor + " ---" + RESET);
+        printHeader();
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
 
             if (t.getVendor().toLowerCase().contains(vendor)) {
                 System.out.printf("%-12s | %-8s | %-40s | %-20s | %,14.2f%n",
-                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());            }
+                        t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+            }
         }
+        System.out.println("-".repeat(105));
     }
 }

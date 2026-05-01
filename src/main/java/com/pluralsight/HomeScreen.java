@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class HomeScreen {
-
+    // creating blue color text
     public static final String BLUE = "\u001B[34m";
     public static final String RESET = "\u001B[0m";
 
