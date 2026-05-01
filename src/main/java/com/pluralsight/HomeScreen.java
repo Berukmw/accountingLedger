@@ -34,7 +34,8 @@ public class HomeScreen {
             } else if (input.equals("P")) {
                 makePayment();
             } else if (input.equals("L")) {
-                System.out.println("Ledger coming soon...");
+                LedgerScreen ledgerScreen = new LedgerScreen(scanner, transactions);
+                ledgerScreen.display();
             } else if (input.equals("X")) {
                 System.out.println("Goodbye!");
                 running = false;
