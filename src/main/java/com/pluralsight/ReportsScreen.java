@@ -5,6 +5,9 @@ import java.util.*;
 
 public class ReportsScreen {
 
+    public static final String BLUE = "\u001B[34m";
+    public static final String RESET = "\u001B[0m";
+
     private Scanner scanner;
     private ArrayList<Transaction> transactions;
 
@@ -18,13 +21,13 @@ public class ReportsScreen {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n----- REPORTS SCREEN -----");
-            System.out.println("1) Month To Date");
-            System.out.println("2) Previous Month");
-            System.out.println("3) Year To Date");
-            System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
-            System.out.println("0) Back");
+            System.out.println("\n" + BLUE + "----- REPORTS SCREEN -----" + RESET);
+            System.out.println(BLUE + "1)" + RESET + " Month To Date");
+            System.out.println(BLUE + "2)" + RESET + " Previous Month");
+            System.out.println(BLUE + "3)" + RESET + " Year To Date");
+            System.out.println(BLUE + "4)" + RESET + " Previous Year");
+            System.out.println(BLUE + "5)" + RESET + " Search by Payee");
+            System.out.println(BLUE + "0)" + RESET + " Back");
             System.out.print("\nEnter option: ");
 
             String input = scanner.nextLine();
@@ -38,7 +41,7 @@ public class ReportsScreen {
             } else if (input.equals("4")) {
                 previousYear();
             } else if (input.equals("5")) {
-                searchByVendor();
+                searchByPayee();
             } else if (input.equals("0")) {
                 running = false;
             } else {
@@ -49,7 +52,7 @@ public class ReportsScreen {
 
     public void monthToDate() {
         LocalDate now = LocalDate.now();
-        System.out.println("\n--- MONTH TO DATE ---");
+        System.out.println("\n" + BLUE + "--- MONTH TO DATE ---" + RESET);
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -63,7 +66,7 @@ public class ReportsScreen {
 
     public void previousMonth() {
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        System.out.println("\n--- PREVIOUS MONTH ---");
+        System.out.println("\n" + BLUE + "--- PREVIOUS MONTH ---" + RESET);
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -77,7 +80,7 @@ public class ReportsScreen {
 
     public void yearToDate() {
         int currentYear = LocalDate.now().getYear();
-        System.out.println("\n--- YEAR TO DATE ---");
+        System.out.println("\n" + BLUE + "--- YEAR TO DATE ---" + RESET);
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -90,7 +93,7 @@ public class ReportsScreen {
 
     public void previousYear() {
         int lastYear = LocalDate.now().getYear() - 1;
-        System.out.println("\n--- PREVIOUS YEAR ---");
+        System.out.println("\n" + BLUE + "--- PREVIOUS YEAR ---" + RESET);
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
@@ -101,10 +104,10 @@ public class ReportsScreen {
         }
     }
 
-    public void searchByVendor() {
-        System.out.print("Enter vendor name: ");
+    public void searchByPayee() {
+        System.out.print("Enter payee name: ");
         String vendor = scanner.nextLine().toLowerCase();
-        System.out.println("\n--- VENDOR SEARCH: " + vendor + " ---");
+        System.out.println("\n" + BLUE + "--- PAYEE SEARCH: " + vendor + " ---" + RESET);
 
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);

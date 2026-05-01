@@ -11,7 +11,7 @@ public class Main {
 
         System.out.println(BLUE + "╔══════════════════════════════════════════╗");
         System.out.println("║                                          ║");
-        System.out.println("║        SEATTLE MARINERS FINANCES         ║");
+        System.out.println("║      SEATTLE MARINERS 2026 FINANCES      ║");
         System.out.println("║                                          ║");
         System.out.println("╚══════════════════════════════════════════╝" + RESET);
         System.out.println("\nLoading... " + BLUE + "Go M's!" + RESET + "\n");

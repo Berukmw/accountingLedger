@@ -6,6 +6,9 @@ import java.util.*;
 
 public class HomeScreen {
 
+    public static final String BLUE = "\u001B[34m";
+    public static final String RESET = "\u001B[0m";
+
     private Scanner scanner;
     private ArrayList<Transaction> transactions;
 
@@ -19,11 +22,11 @@ public class HomeScreen {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n----- HOME SCREEN -----");
-            System.out.println("D) Add Revenue");
-            System.out.println("P) Add Expense");
-            System.out.println("L) Financial Ledger");
-            System.out.println("X) Exit");
+            System.out.println("\n" + BLUE + "----- HOME SCREEN -----" + RESET);
+            System.out.println(BLUE + "D)" + RESET + " Add Revenue");
+            System.out.println(BLUE + "P)" + RESET + " Add Expense");
+            System.out.println(BLUE + "L)" + RESET + " Financial Ledger");
+            System.out.println(BLUE + "X)" + RESET + " Exit");
             System.out.print("\nEnter option: ");
 
             String input = scanner.nextLine().toUpperCase();
@@ -45,12 +48,12 @@ public class HomeScreen {
     }
 
     public void addRevenue() {
-        System.out.println("\n----- ADD REVENUE -----");
+        System.out.println("\n" + BLUE + "----- ADD REVENUE -----" + RESET);
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
 
-        System.out.print("Vendor: ");
+        System.out.print("Payee: ");
         String vendor = scanner.nextLine();
 
         System.out.print("Amount: ");
@@ -68,12 +71,12 @@ public class HomeScreen {
     }
 
     public void addExpense() {
-        System.out.println("\n----- ADD EXPENSE -----");
+        System.out.println("\n" + BLUE + "----- ADD EXPENSE -----" + RESET);
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
 
-        System.out.print("Vendor: ");
+        System.out.print("Payee: ");
         String vendor = scanner.nextLine();
 
         System.out.print("Amount: ");

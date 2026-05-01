@@ -5,6 +5,9 @@ import java.util.*;
 
 public class LedgerScreen {
 
+    public static final String BLUE = "\u001B[34m";
+    public static final String RESET = "\u001B[0m";
+
     private Scanner scanner;
     private ArrayList<Transaction> transactions;
 
@@ -18,12 +21,12 @@ public class LedgerScreen {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n----- FINANCIAL LEDGER -----");
-            System.out.println("A) All Entries");
-            System.out.println("D) Revenue");
-            System.out.println("P) Expenses");
-            System.out.println("R) Reports");
-            System.out.println("H) Home");
+            System.out.println("\n" + BLUE + "----- FINANCIAL LEDGER -----" + RESET);
+            System.out.println(BLUE + "A)" + RESET + " All Entries");
+            System.out.println(BLUE + "D)" + RESET + " Revenue");
+            System.out.println(BLUE + "P)" + RESET + " Expenses");
+            System.out.println(BLUE + "R)" + RESET + " Reports");
+            System.out.println(BLUE + "H)" + RESET + " Home");
             System.out.print("\nEnter option: ");
 
             String input = scanner.nextLine().toUpperCase();
@@ -46,7 +49,7 @@ public class LedgerScreen {
     }
 
     public void displayAll() {
-        System.out.println("\n--- ALL ENTRIES ---");
+        System.out.println("\n" + BLUE + "--- ALL ENTRIES ---" + RESET);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             System.out.println(t.getDate() + " | " + t.getTime() + " | " + t.getDescription() + " | " + t.getVendor() + " | " + t.getAmount());
@@ -54,7 +57,7 @@ public class LedgerScreen {
     }
 
     public void displayRevenue() {
-        System.out.println("\n--- REVENUE ---");
+        System.out.println("\n" + BLUE + "--- REVENUE ---" + RESET);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() > 0) {
@@ -64,7 +67,7 @@ public class LedgerScreen {
     }
 
     public void displayExpenses() {
-        System.out.println("\n--- EXPENSES ---");
+        System.out.println("\n" + BLUE + "--- EXPENSES ---" + RESET);
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() < 0) {
