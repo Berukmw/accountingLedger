@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.util.*;
 
+
 public class LedgerScreen {
 
     private Scanner scanner;
@@ -17,10 +18,10 @@ public class LedgerScreen {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n----- LEDGER SCREEN -----");
+            System.out.println("\n----- FINANCIAL LEDGER -----");
             System.out.println("A) All Entries");
-            System.out.println("D) Deposits Only");
-            System.out.println("P) Payments Only");
+            System.out.println("D) Revenue");
+            System.out.println("P) Expenses");
             System.out.println("R) Reports");
             System.out.println("H) Home");
             System.out.print("\nEnter option: ");
@@ -30,9 +31,9 @@ public class LedgerScreen {
             if (input.equals("A")) {
                 displayAll();
             } else if (input.equals("D")) {
-                displayDeposits();
+                displayRevenue();
             } else if (input.equals("P")) {
-                displayPayments();
+                displayExpenses();
             } else if (input.equals("R")) {
                 ReportsScreen reportsScreen = new ReportsScreen(scanner, transactions);
                 reportsScreen.display();
@@ -52,8 +53,8 @@ public class LedgerScreen {
         }
     }
 
-    public void displayDeposits() {
-        System.out.println("\n--- DEPOSITS ---");
+    public void displayRevenue() {
+        System.out.println("\n--- REVENUE ---");
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() > 0) {
@@ -62,8 +63,8 @@ public class LedgerScreen {
         }
     }
 
-    public void displayPayments() {
-        System.out.println("\n--- PAYMENTS ---");
+    public void displayExpenses() {
+        System.out.println("\n--- EXPENSES ---");
         for (int i = 0; i < transactions.size(); i++) {
             Transaction t = transactions.get(i);
             if (t.getAmount() < 0) {

@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.time.*;
 import java.util.*;
 
+
 public class HomeScreen {
 
     private Scanner scanner;
@@ -13,26 +14,24 @@ public class HomeScreen {
         this.transactions = transactions;
     }
 
-    // display code block
     public void display() {
 
-        // checks if application is running
         boolean running = true;
 
         while (running) {
             System.out.println("\n----- HOME SCREEN -----");
-            System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment");
-            System.out.println("L) Ledger");
+            System.out.println("D) Add Revenue");
+            System.out.println("P) Add Expense");
+            System.out.println("L) Financial Ledger");
             System.out.println("X) Exit");
             System.out.print("\nEnter option: ");
 
             String input = scanner.nextLine().toUpperCase();
 
             if (input.equals("D")) {
-                addDeposit();
+                addRevenue();
             } else if (input.equals("P")) {
-                makePayment();
+                addExpense();
             } else if (input.equals("L")) {
                 LedgerScreen ledgerScreen = new LedgerScreen(scanner, transactions);
                 ledgerScreen.display();
@@ -44,9 +43,9 @@ public class HomeScreen {
             }
         }
     }
-    // deposit code block
-    public void addDeposit() {
-        System.out.println("\n----- ADD DEPOSIT -----");
+
+    public void addRevenue() {
+        System.out.println("\n----- ADD REVENUE -----");
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
@@ -57,19 +56,19 @@ public class HomeScreen {
         System.out.print("Amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
 
+        if (amount < 0) amount = Math.abs(amount);
+
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
         Transaction t = new Transaction(date, time, description, vendor, amount);
-
         transactions.add(t);
         FileManager.saveTransaction(t);
-
-        System.out.println("Deposit saved!");
+        System.out.println("Revenue of $" + String.format("%.2f", amount) + " saved successfully.");
     }
-    // payment code block
-    public void makePayment() {
-        System.out.println("\n----- MAKE PAYMENT -----");
+
+    public void addExpense() {
+        System.out.println("\n----- ADD EXPENSE -----");
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
@@ -80,19 +79,14 @@ public class HomeScreen {
         System.out.print("Amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
 
-        // payments are always negative
-        if (amount > 0) {
-            amount = -amount;
-        }
+        if (amount > 0) amount = -amount;
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
         Transaction t = new Transaction(date, time, description, vendor, amount);
-
         transactions.add(t);
         FileManager.saveTransaction(t);
-
-        System.out.println("Payment saved!");
+        System.out.println("Expense of $" + String.format("%.2f", Math.abs(amount)) + " saved successfully.");
     }
 }
