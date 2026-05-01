@@ -76,4 +76,4 @@ these decisions easier to catch early.
 
 ![Reports Screen](images/Reportsscreen.png)
 
-Thank you! & Go M's!!
+## Thank you! & Go M's!!
