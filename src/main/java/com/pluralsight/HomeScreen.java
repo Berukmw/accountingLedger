@@ -42,7 +42,7 @@ public class HomeScreen {
                 LedgerScreen ledgerScreen = new LedgerScreen(scanner, transactions);
                 ledgerScreen.display();
             } else if (input.equals("X")) {
-                System.out.println("Goodbye!");
+                System.out.println("See ya! " + BLUE + "Go M's!!" + RESET);
                 running = false;
             } else {
                 System.out.println("Invalid option. Try again.");
